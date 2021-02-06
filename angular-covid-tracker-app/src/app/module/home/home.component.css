@@ -1,0 +1,10 @@
+.table {
+    position: sticky;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.jumbotron {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }

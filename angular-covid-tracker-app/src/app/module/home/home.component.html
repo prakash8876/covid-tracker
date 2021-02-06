@@ -1,0 +1,55 @@
+<!-- Title/Navbar -->
+
+<div class="container">
+  <nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">Covid Tracker Application</a>
+  </nav>
+    <blockquote class="blockquote">
+        <p class="mb-0">This application lists the current number of
+           <b>Corona Virus</b> Cases reported across the globe.</p>
+    </blockquote>
+</div>
+
+<!-- Jumbotron -->
+<div class="container">
+  <div class="jumbotron jumbotron-fluid text-center">
+<h1 class="display-4">{{totalReports}}</h1>
+<p class="lead">Total cases reported as of today.</p>
+<hr class="my-4">
+<p>
+    <span>New Cases reported since previous day: </span>
+    <span>{{totalDiffr}}</span>
+</p>
+</div>
+</div>
+
+<!-- search tab -->
+<div class="container">
+      <input class="form-control" type="text" name="country" [(ngModel)]="country" (ngModelChange)="search()" placeholder = "Search by Country" />
+</div>
+<br>
+
+<!-- Table -->
+<div class="container">
+    <table class="table table-bordered table-hover table-sm">
+    <caption>List of current reported cases</caption>
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Country</th>
+        <th scope="col">State</th>
+        <th scope="col">Total Cases Confirmed</th>
+        <th scope="col">Changes</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of stats |paginate:{itemsPerPage:10,currentPage:p};">
+        <td>{{data.country}}</td>
+        <td>{{data.state}}</td>
+        <td>{{data.latestTotalCases}}</td>
+        <td>{{data.diffFromPrevDay}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <!-- pagination -->
+    <pagination-controls (pageChange)="p=$event" style="text-align: center;"></pagination-controls>
+  </div>
